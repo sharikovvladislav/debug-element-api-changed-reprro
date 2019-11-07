@@ -16,16 +16,17 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'latest-ng-ivy-boilerplate'`, () => {
+  it('debug element', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('latest-ng-ivy-boilerplate');
+
+    app.disabled = true;
+    fixture.detectChanges();
+
+    const de = fixture.debugElement;
+    console.log('>> de.attributes', de.attributes);
+
+    expect(de.attributes.tabindex).toBe(null);
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('latest-ng-ivy-boilerplate app is running!');
-  });
 });
